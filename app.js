@@ -4,7 +4,7 @@
 
 var app = require('express')();
 
-// Maneja los archivos estaticos que estn en el directorio public
+// Maneja los archivos estaticos que estan en el directorio /public
 const express = require('express');
 const app_ = express();
 app.use(express.static(__dirname + '/public'));
@@ -37,8 +37,12 @@ app.get('/', function(req, res) {
 io.on('connection', function(socket) {
 	console.log("Usuario conectado");
 	socket.on('chat message', function(msg) {
-		console.log("emit message: " + msg);
+		console.log("Mensaje emitido " + msg);
 		io.emit('chat message', msg);
+	});
+	socket.on('login', function(usr) {
+		console.log("Usuario logueado: " + usr);
+		io.emit('login', usr);
 	});
 });
 
