@@ -4,17 +4,91 @@
         <title> Socket.IO chat </title>
 
         <link rel="stylesheet" href="styles.css"/>
-
-        <script src="/socket.io/socket.io.js"></script>
+        <script src="http://localhost:8000/socket.io/socket.io.js"></script>
         <script src="jquery-3.4.1.min.js"></script>
-        <script src="script.js"></script>
+        
+        <script>
+            var socket = io();
+            var nombre;
+            $(document).ready(function(){
+                
+                socket.connect('http://localhost:8000');//coneccion al servidor
+                $("#chat").hide();//Invisibiliza el chat, para que se cargue el nombre de usuario primero
+		        $("#name").focus();
+                $("form").submit(function(event){
+    		        event.preventDefault();
+                });
+                
+                $("#join").click(function(){
+
+                    console.log($("#name").val());
+                    //Almacenar el nombre del usuario en el almacenamiento local de navegador
+                    localStorage.setItem("nombre",$("#name").val());
+                    if (nombre != "") {
+                        $("#login").detach();
+                        $("#chat").show();// Mostrar el chat. ya que se ingreso un usuario
+                        $("#message").focus();
+                        ready = true;
+                    }
+                });
+
+                /*
+                *   evento de envio de mensajes
+                */
+                $('form').submit(function(e) {
+                    e.preventDefault(); // Previene la recarga de la página
+
+                    /* 
+                    * Emite un evento de chat message y borra
+                    * el mensaje que el usuario envío del campo
+                    * del chat
+                    */
+                    socket.emit('chat message', $('#m').val());
+                    $('#m').val('');
+                    return false;
+                });
+
+                /*
+                * Captura el evento de chat message y 
+                * agrega el mensaje a la página web
+                * lo agrega en forma de fila a la tabla "message"
+                */
+                socket.on('chat message', function(msg) {
+                    if(ready){
+                        // se obtiene el nombre de usuario desde el local storage
+                        $('#messages').append($('<li> ').text(localStorage.getItem("nombre")+": " + msg + ""));
+                    }
+                });
+            });
+        </script>
     </head>
 
     <body>
-        <ul id="messages"></ul>
-        <form action="">
-            <input id="m" autocomplete="off" />
-            <button> Send </button>
-        </form>
+        <div class="row">
+            <div class="span2">
+                <ul id="people" class="unstyled"></ul>
+            </div>
+            <div class="span4">
+                <ul id="messages" class="unstyled">
+            </div>
+          </div>
+          <div class="row">
+                <div class="span5 offset2" id="login">
+                        <form class="form-inline">
+                              <input type="text" class="input-small" placeholder="Nombre de Usuario" id="name">
+                            <input type="button" name="join" id="join" value="Unirse al Chat" class="btn btn-primary">
+                        </form>
+                </div>
+              <div class="span5 offset2" id="chat">
+                  <form id="2" class="form-inline">
+                        <input type="text" class="input" placeholder="Mensaje" id="m">
+                      <input type="button" name="send" id="send" value="Enviar" class="btn btn-success">
+                      <h4></h4>>
+                  </form>
+              </div>
+              
+            </div>
+          </div>
+
     </body>
 </html>

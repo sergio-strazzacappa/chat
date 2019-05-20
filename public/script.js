@@ -21,6 +21,7 @@ $(function() {
         /*
          * Captura el evento de chat message y 
          * agrega el mensaje a la página web
+         * lo agrega en forma de fila a la tabla "message"
          */
         socket.on('chat message', function(msg) {
             $('#messages').append($('<li>').text(msg));

@@ -6,6 +6,7 @@
 
 body {
     font: 13px Helvetica, Arial;
+    width:50%; height:50%;
 }
 
 form {
