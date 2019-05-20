@@ -2,31 +2,55 @@
 <html lang="es-AR">
     <head>
     	<meta charset="UTF-8" http-equiv="content-type" content="text/html">
-    	<link href="/img/chat.ico" rel="icon"/>
+    	<link href="img/chat.ico" rel="icon"/>
 
-        <title> Chat - Login </title>
+        <title> Chat </title>
 
         <link rel="stylesheet" type="text/css" href="/css/reset.css"/>
-        <link rel="stylesheet" type="text/css" href="/css/login.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 
         <script src="/socket.io/socket.io.js"></script>
         <script src="/js/jquery-3.4.1.min.js"></script>
-        <script src="/js/script.js"></script>
+        <script src="/js/cliente.js"></script>
     </head>
 
     <body>
-        <img alt="background_image" src="/img/background.jpg" id="background_image" />
+        <!-- Imagen de fondo -->
+    	<img alt="background_image" src="/img/background.jpg" id="background_image" />
 
-        <form id="login" action="chat.html" method="get">
-            <div class="imgcontainer">
-                <img src="/img/user.png" alt="Avatar" class="avatar">
-            </div>
+        <!-- Título -->
+        <div id="contenedor_titulo">
+            <h2 id="titulo"> Chat </h2>
+            <img src="/img/user.png" alt="Avatar" id="avatar">
+        </div>
 
+        <!-- Formulario de login -->
+        <form id="login">
             <div class="container">
-                <label for="uname"> Nombre de usuario </label>
+                <label for="uname"> Nombre de usuario: </label>
                 <input type="text" placeholder="Ingrese su nombre de usuario" name="uname" id="u" required/>
-                <input type="submit" value="Login" id="s"> </input>
+                <input type="submit" value="Login" class="button"> </input>
             </div>
+        </form>
+
+        <div id=bienvenida></div>
+
+        <div id="caja_chat">
+            <!-- Usuarios conectados -->
+            <ul id="lista_usuarios"> 
+                <p> Usuarios conectados: </p>
+            </ul>
+
+            <!-- Mensajes del chat -->
+            <ul id="mensajes"> 
+                <p> Mensajes: </p>
+            </ul>
+        </div>
+
+        <!-- Formulario para enviar mensajes al chat -->
+        <form id="chat" action="">
+            <input id="m" autocomplete="off" placeholder="Ingrese su mensaje" />
+            <input type="submit" value="Enviar" class="button"> </input>
         </form>
     </body>
 </html>

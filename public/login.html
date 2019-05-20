@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+    <head>
+    	<meta charset="UTF-8" http-equiv="content-type" content="text/html">
+    	<link href="/img/chat.ico" rel="icon"/>
+
+        <title> Chat - Login </title>
+
+        <link rel="stylesheet" type="text/css" href="/css/reset.css"/>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/jquery-3.4.1.min.js"></script>
+        <script src="/js/cliente.js"></script>
+    </head>
+
+    <body>
+        <img alt="background_image" src="/img/background.jpg" id="background_image" />
+
+        <form id="login" action="/chat.html">
+            <div class="imgcontainer">
+                <img src="/img/user.png" alt="Avatar" class="avatar">
+            </div>
+
+            <div class="container">
+                <label for="uname"> Nombre de usuario </label>
+                <input type="text" placeholder="Ingrese su nombre de usuario" name="uname" id="u" required/>
+                <input type="submit" value="Login" id="s"> </input>
+            </div>
+        </form>
+    </body>
+</html>
