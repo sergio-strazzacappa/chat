@@ -11,30 +11,24 @@ app.use(express.static(__dirname + '/public'));
 
 var app = require('express')();
 
-/*
- * Se define como raíz de ruta a / que será
- * llamado cuando se inicie el sitio web y se provee
- * la página web
- */
+// Se define como raíz de ruta a / que será
+// llamado cuando se inicie el sitio web y se provee
+// la página web
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + 'index.html');
 });
 
-/*
- * Lista de usuarios conectados
- */
-var nicks = new Array();
+// Lista de usuarios conectados
+var usuarios = new Array();
 
-/*
- * Escucha por los eventos de conexiones
- * y el evento chat message cuando un usuario
- * ha enviado algún mensaje por el chat
- */
+// Escucha por los eventos de conexiones
+// y el evento chat message cuando un usuario
+// ha enviado algún mensaje por el chat
 io.on('connection', function(socket) {
-	console.log("Usuario conectado");
+	// console.log("Usuario conectado");
 
-	usuarios(socket);
-	registrar(socket);
+	enviar_usuarios(socket);
+	registrar_usuario(socket);
 	mensaje(socket);
 	desconectar(socket);
 
@@ -57,35 +51,30 @@ io.on('connection', function(socket) {
 	});*/
 });
 
-/*
- * Envía una lista de los usuarios conectados a todos
- * los usuarios
- */
-function usuarios(socket) {
-	socket.emit('usuarios', {nicks: nicks});
-	socket.broadcast.emit('usuarios', {nicks, nicks});
+// Envía una lista de los usuarios conectados a todos
+// los usuarios
+function enviar_usuarios(socket) {
+	socket.emit('usuarios', {usuarios: usuarios});
+	socket.broadcast.emit('usuarios', {usuarios, usuarios});
 }
 
-/*
- * Registra a un nuevo usuario con la condición que el
- * nick elegido no se haya registrado previamente
- */
-
-function registrar(socket) {
-	socket.on('nick', function(data) {
-		console.log('Servidor recibe evento de nick');
-		var nick = data.nick;
-		console.log("Nick del usuario: " + nick);
-		if(nicks.indexOf(nick) == -1) { // Usuario no registrado
-			nicks.push(nick);
-			console.log("Lista de nicks: " + nicks);
-			socket.nick = nick;
-			socket.emit('nick', {correcto: true, nick: nick}); // Envía el nick al propio usuario
-			socket.broadcast.emit('nuevo_usuario', {nick: nick}); // Envía el nick al resto de los usuarios
-			usuarios(socket);
+// Registra a un nuevo usuario con la condición que el
+// nombre de usuario elegido no se haya registrado previamente
+function registrar_usuario(socket) {
+	socket.on('nuevo_usuario', function(data) {
+		//console.log('Servidor recibe evento de nuevo_usuario');
+		var usuario = data.usuario;
+		//console.log("Nombre de usuario: " + usuario);
+		if(usuarios.indexOf(usuario) == -1) { // Usuario no registrado
+			usuarios.push(usuario);
+			// console.log("Lista de usuarios: " + usuarios);
+			socket.usuario = usuario;
+			socket.emit('nuevo_usuario', {correcto: true, usuario: usuario}); // Envía el nombre de usuario al propio usuario
+			socket.broadcast.emit('nuevo_usuario', {usuario: usuario}); // Envía el nombre de usuario al resto de los usuarios
+			enviar_usuarios(socket);
 		}
 		else {
-			socket.emit('nick', {correcto: false, nick: nick});
+			socket.emit('nuevo_usuario', {correcto: false, usuario: usuario});
 		}
 	});
 }

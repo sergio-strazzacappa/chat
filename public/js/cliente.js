@@ -1,54 +1,66 @@
-$(function(){
+// Carga el cliente de socket.io y crea una variable
+// socket global
+var socket = io.connect('http://localhost:8000');
 
-    /*
-     * Carga el cliente de socket.io y crea una variable
-     * socket global
-     */
-    var socket = io.connect('http://localhost:8000');
+var nombre = "";
 
-    /***************************/
-    /********** LOGIN **********/
-    /***************************/
+$(document).ready(function() {
+    /*******************************/
+    /************ LOGIN ************/
+    /*******************************/
 
-    /* 
-     * Recibe los usuarios conectados y los agrega al html
-     */
-    socket.on('usuarios', function(data) {
-        console.log('Cliente recibe evento "usuarios"');
-        var nicks = data.nicks;
-        console.log("Nicks recibidos por el cliente: " + nicks);
+    // Oculta la interfaz del chat para que
+    // el usuario se registre
+    $('#caja_chat').hide();
+    $('#chat').hide();
 
-        for(var i = 0; i < nicks.length; i++) {
-            $('#lista_usuarios').append('<li class="usuario">' + nicks[i] + '</li>');
-        }
-    });
+    // Hace foco en el campo de texto para ingresar
+    // el nombre de usuario
+    $('#u').focus();
 
-    /* 
-     * Emite un evento de nick cuando un usuario se registra
-     */
+    // Emite un evento de "nuevo_usuario" cuando un usuario
+    // se registra
     $('#login').submit(function(e) {
-        //console.log('Emisión de evento nick');
-        var nick = $('#u').val();
-        //console.log('Nick = ' + nick);
-        socket.emit('nick', {nick: nick});
+       //console.log('Emisión del evento nuevo_usuario');
+
+        var usuario = $('#u').val();
+
+        //console.log('Nombre de usuario = ' + usuario);
+
+        socket.emit('nuevo_usuario', {usuario: usuario});
+        nombre = usuario;
         e.preventDefault(); // Previene la recarga de la página
+
         //return false;
-    });
 
-    /*
-     * Verifica si existe el nick utilizado por el usuario
-     */
+        // Verifica si existe el nombre de usuario utilizado
+        socket.on('nuevo_usuario', function(data) {
+            //console.log('El cliente recibe el evento nuevo_usuario');
 
-    socket.on('nick', function(data) {
-        console.log('El cliente recibe el evento nick');
-        if(data.correcto) {
-            $('#bienvenida').append('<p> Bienvenido/a ' + data.nick + '</p>');
-            $('#login').hide();
-        }
-        else {
-            alert ('Ya existe un usuario con el nombre ' + data.nick);
-        }
+            if(data.correcto) {
+                $('#bienvenida').append('<p> Bienvenido/a ' + data.usuario + '</p>');
+                $('#login').hide();
+                $('#caja_chat').show();
+                $('#chat').show();
+            }
+            else {
+                alert ('Ya existe un usuario con el nombre ' + data.usuario);
+            }
+        });
     });
+});
+
+// Recibe los usuarios conectados y los agrega al html
+socket.on('usuarios', function(data) {
+    //console.log('Cliente recibe evento "usuarios"');
+    var usuarios = data.usuarios;
+    //console.log("Nicks recibidos por el cliente: " + nicks);
+    for(var i = 0; i < usuarios.length; i++) {
+        $('#lista_usuarios').append('<li class="usuario">' + usuarios[i] + '</li>');
+    }
+});
+
+
 
     /*socket.on('mensaje', function(data) {
         console.log("Bienvenida a usuario");
@@ -76,4 +88,3 @@ $(function(){
     /*socket.on('linea', function(msg, usr) {
         $('#messages').append($('<li class="linea" style="text-decoration:none">').text(usr + ': ' + msg));
     });*/
-});
