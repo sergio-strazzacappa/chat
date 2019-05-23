@@ -1,3 +1,7 @@
+html {
+    height: 100%;
+}
+
 body {
     width: 100%;
     height: 100%;
@@ -117,7 +121,7 @@ input {
 /* Panel de usuarios conectados */
 #caja_chat {
     width: 100%;
-    height: 100%;
+    height: 60%;
     clear: both;
 }
 
@@ -128,10 +132,12 @@ ul {
 #lista_usuarios {
     float: left;
     width: 15%;
+    height: 100%;
     border: 1px #333333 solid;
     padding: 5px;
     margin: 10px;
     background-color: #666666;
+    overflow: auto;
 }
 
 #lista_usuarios > p {
@@ -148,10 +154,19 @@ ul {
     padding: 5px;
 }
 
+#usuario_propio {
+    font-weight: bold;
+    font-size: 14px;
+    padding: 5px;
+    color: #cc0000;
+    text-decoration: underline;
+}
+
 /* Panel del chat */
 
 #mensajes {
     width: 70%;
+    height: 100%;
     margin: 10px;
     padding: 5px;
     font-size: 20px;
@@ -159,11 +174,13 @@ ul {
     border: 1px #000000 solid;
     background-color: #eeeeee;
     float: right;
+    overflow: auto;
 }
 
 #mensajes > p {
     text-decoration: underline;
     margin-bottom: 5px;
+    text-align: center;
 }
 
 #mensajes > li {
