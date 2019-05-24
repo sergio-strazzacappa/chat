@@ -1,19 +1,11 @@
-html {
-    height: 100%;
-}
-
 body {
     width: 100%;
     height: 100%;
-    padding: 0;
-    margin: 0;
     font-family: neuton, serif;
     font-size: : 20px;
     font-weight: normal;
     font-style: normal;
     text-align: justify;
-    text-decoration: none;
-    color: #000000;
 }
 
 #background_image {
@@ -26,10 +18,9 @@ body {
 }
 
 /* Título */
-
 #contenedor_titulo {
     padding: 10px;
-    width: 50%;
+    width: 100%;
     height: 100px;
     text-align: center;
     margin: 0 auto;
@@ -52,7 +43,6 @@ body {
 }
 
 /* Login */
-
 form {
     padding: 3px;
     margin: 10px;
@@ -62,29 +52,20 @@ form {
 .container {
     width: 50%;
     margin: 0 auto;
-    display: block;
-    min-width: 300px;
+    min-width: 400px;
 }
 
 label {
     width: 20%;
     font-weight: bold;
-    display: inline-block;
     margin: 0 auto;
 }
 
 input {
-    margin-left: 5px;
+    margin: 0 5px;
     border: 1px #000000 solid;
     padding: 10px;
     width: 50%;
-}
-
-#u {
-    width: 40%;
-    height: 40px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
     background-color: #dddddd;
 }
 
@@ -98,7 +79,6 @@ input {
     border: none;
     cursor: pointer;
     text-align: center;
-    margin: 0 auto;
     font-weight: bold;
 }
 
@@ -110,33 +90,39 @@ input {
 #bienvenida {
     text-align: center;
     font-weight: bold;
-    font-size: 20px;
-    color: red;
-    display: block;
-    margin: 0 auto;
+    font-size: 24px;
+    color: #222255;
+    text-align: center;
+    width: 100%;
     min-width: 300px;
     width: 100%;
+    position: absolute;
+    top: 100px;
+    margin: 10px;
+    padding: 10px;
 }
 
-/* Panel de usuarios conectados */
 #caja_chat {
     width: 100%;
-    height: 60%;
-    clear: both;
+    position: absolute;
+    top: 150px;
+    max-height: 350px;
 }
 
 ul {
     list-style-type: none;
+    max-height: 300px;
 }
 
+/* Panel de usuarios conectados */
 #lista_usuarios {
     float: left;
     width: 15%;
     height: 100%;
     border: 1px #333333 solid;
     padding: 5px;
-    margin: 10px;
-    background-color: #666666;
+    margin: 15px;
+    background-color: #999999;
     overflow: auto;
 }
 
@@ -144,11 +130,12 @@ ul {
     color: #eeeeee;
     font-weight: bold;
     font-size: 16px;
+    padding-bottom: 5px;
     border-bottom: 1px #333333 solid;
 }
 
 .usuario {
-    color: #ffffff;
+    color: #333333;
     font-weight: bold;
     font-size: 14px;
     padding: 5px;
@@ -158,22 +145,18 @@ ul {
     font-weight: bold;
     font-size: 14px;
     padding: 5px;
-    color: #cc0000;
-    text-decoration: underline;
+    color: #ffffff;
 }
 
 /* Panel del chat */
-
 #mensajes {
     width: 70%;
     height: 100%;
     margin: 10px;
     padding: 5px;
     font-size: 20px;
-    font-weight: bold;
     border: 1px #000000 solid;
     background-color: #eeeeee;
-    float: right;
     overflow: auto;
 }
 
@@ -181,20 +164,18 @@ ul {
     text-decoration: underline;
     margin-bottom: 5px;
     text-align: center;
+    font-weight: bold;
 }
 
 #mensajes > li {
     padding: 5px 10px; 
-    font-family: neuton, serif;
-    font-size: : 20px;
-    font-weight: normal;
-    font-style: normal;
-    text-align: justify;
     border-bottom: 0.5px #333333 solid;
 }
 
 /* Panel de envió de mensajes */
 #chat {
-    position: fixed;
+    position: absolute;
+    text-align: left;
+    width: 100%;
     bottom: 10px;
 }

@@ -14,6 +14,7 @@ $(document).ready(function() {
     // el usuario se registre
     $('#caja_chat').hide();
     $('#chat').hide();
+    $('#bienvenida').hide();
 
     // Hace foco en el campo de texto para ingresar
     // el nombre de usuario
@@ -45,6 +46,7 @@ $(document).ready(function() {
             $('#login').hide();
             $('#caja_chat').show();
             $('#chat').show();
+            $('#bienvenida').show();
         }
         else {
             console.log('Envío de datos incorrecto');
@@ -69,12 +71,14 @@ socket.on('enviarListaUsuarios', function(data) {
     $('#lista_usuarios').replaceWith(
         '<ul id="lista_usuarios"> <p> Usuarios conectados: </p> </ul>');
 
-    for(var i = 0; i < usuarios.length; i++) {
-        if(usuarios[i] == nombre) {
-            $('#lista_usuarios').append('<li id="usuario_propio">' + usuarios[i] + '</li>');
-        }
-        else {
-            $('#lista_usuarios').append('<li class="usuario">' + usuarios[i] + '</li>');
+    if(usuarios.length != undefined){
+        for(var i = 0; i < usuarios.length; i++) {
+            if(usuarios[i] == nombre) {
+                $('#lista_usuarios').append('<li id="usuario_propio">' + usuarios[i] + '</li>');
+            }
+            else {
+                $('#lista_usuarios').append('<li class="usuario">' + usuarios[i] + '</li>');
+            }
         }
     }
 });
