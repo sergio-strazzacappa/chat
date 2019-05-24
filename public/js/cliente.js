@@ -55,6 +55,10 @@ $(document).ready(function() {
     });
 });
 
+/*******************************/
+/***** USUARIOS CONECTADOS *****/
+/*******************************/
+
 
 // Recibe los usuarios conectados y los agrega al html
 socket.on('enviarListaUsuarios', function(data) {
@@ -74,6 +78,10 @@ socket.on('enviarListaUsuarios', function(data) {
         }
     }
 });
+
+/*******************************/
+/************ CHAT *************/
+/*******************************/
 
 $(function() {
     // Emite un evento de mensaje y borra

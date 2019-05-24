@@ -33,24 +33,6 @@ io.on('connection', function(socket) {
 	registrarUsuario(socket);
 	enviarMensaje(socket);
 	desconectar(socket);
-
-	/*socket.emit('mensaje', {text: 'Bienvenido'});
-	socket.broadcast.emit('mensaje', {text: 'Un nuevo usuario se ha conectado'});
-
-	socket.on('disconnect', function() {
-		console.log("Usuario desconectado");
-		socket.broadcast.emit('mensaje', {text: 'Un usuario se ha desconectado'});
-	});
-
-	socket.on('login', function(usr) {
-		console.log("Usuario logueado: " + usr);
-		io.emit('login', usr);
-	});
-
-	socket.on('mensaje', function(msg) {
-		console.log("Mensaje emitido: " + msg);
-		io.emit('linea', msg);
-	});*/
 });
 
 // Envía una lista de los usuarios conectados a todos
