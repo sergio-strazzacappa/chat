@@ -175,7 +175,7 @@ ul {
 /* Panel de envió de mensajes */
 #chat {
     position: absolute;
-    text-align: left;
+    text-align: center;
     width: 100%;
     bottom: 10px;
 }
