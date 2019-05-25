@@ -4,7 +4,7 @@
 
 var express = require('express');
 var app = express();
-var server = require('http').createServer(app);
+var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 app.use(express.static(__dirname + '/public'));
@@ -24,8 +24,6 @@ var usuarios = new Array();
 console.log('Servidor iniciado');
 
 // Escucha por los eventos de conexiones
-// y el evento chat message cuando un usuario
-// ha enviado algún mensaje por el chat
 io.on('connection', function(socket) {
 	console.log("Usuario conectado");
 

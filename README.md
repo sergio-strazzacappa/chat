@@ -11,7 +11,7 @@
 
 1. Ejecutar el servidor
 ~~~
-node index.js (utiliza el puerto 8000)
+node servidor.js (utiliza el puerto 8000)
 ~~~
 
 2. Abrir varias instancias de la aplicación en el navegador web

@@ -1,6 +1,7 @@
 // Carga el cliente de socket.io y crea una variable
 // socket global
-var socket = io.connect('http://localhost:8000');
+//var socket = io.connect('http://localhost:8000');
+var socket = io();
 
 var nombre = "";
 

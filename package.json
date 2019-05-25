@@ -1,21 +1,21 @@
 {
-  "name": "chat-compartido",
+  "name": "Chat",
   "version": "1.0.0",
   "description": "Chat compartido entre múltiples usuarios",
-  "main": "index.js",
+  "main": "servidor.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sergio-strazzacappa/Chat-compartido.git"
+    "url": "git+https://github.com/Sergio-strazzacappa/Chat.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Sergio-strazzacappa/Chat-compartido/issues"
+    "url": "https://github.com/Sergio-strazzacappa/Chat/issues"
   },
-  "homepage": "https://github.com/Sergio-strazzacappa/Chat-compartido#readme",
+  "homepage": "https://github.com/Sergio-strazzacappa/Chat#readme",
   "dependencies": {
     "express": "^4.16.4",
     "socket.io": "^2.2.0"
