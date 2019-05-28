@@ -5,7 +5,6 @@
 1. node.js
 2. express.js
 3. socket.io
-4. Un servidor web como XAMPP, LAMP, WAMP ó python
 
 ### Instrucciones de uso
 
