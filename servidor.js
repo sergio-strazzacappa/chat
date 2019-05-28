@@ -70,13 +70,15 @@ function registrarUsuario(socket) {
 // se lo envía a todos los usuarios
 function enviarMensaje(socket) {
 	socket.on('enviarMensaje', function(data) {
-		console.log('Servidor recibe evento de enviarMensaje');
-		console.log('Mensaje: ' + data.mensaje);
-		var mensaje = data.mensaje;
-		var usuario = data.usuario;
-		console.log('Servidor emite evento de mensaje');
-		socket.emit('mensaje', {mensaje: mensaje, usuario: usuario})
-		socket.broadcast.emit('mensaje', {mensaje: mensaje, usuario: usuario});
+		if (data.mensaje.trim()){//No Enviar mensajes vacios o solo espacios 
+			console.log('Servidor recibe evento de enviarMensaje');
+			console.log('Mensaje: ' + data.mensaje);
+			var mensaje = data.mensaje;
+			var usuario = data.usuario;
+			console.log('Servidor emite evento de mensaje');
+			socket.emit('mensaje', {mensaje: mensaje, usuario: usuario})
+			socket.broadcast.emit('mensaje', {mensaje: mensaje, usuario: usuario});
+		}
 	});
 }
 
