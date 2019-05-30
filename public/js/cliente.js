@@ -44,7 +44,6 @@ $(document).ready(function() {
         console.log('Validación del nombre de usuario ' + data.correcto);
         if(data.correcto) {
             console.log('Envío de datos correcto');
-            
             $('#login').hide();
             $('#caja_usuario').show();
             $('#caja_chat').show();
