@@ -13,6 +13,7 @@ $(document).ready(function() {
 
     // Oculta la interfaz del chat para que
     // el usuario se registre
+    $('#caja_usuario').hide();
     $('#caja_chat').hide();
     $('#chat').hide();
     $('#bienvenida').hide();
@@ -43,12 +44,14 @@ $(document).ready(function() {
         console.log('Validación del nombre de usuario ' + data.correcto);
         if(data.correcto) {
             console.log('Envío de datos correcto');
-            $('#bienvenida').append('<p> Bienvenido/a ' + data.usuario + '</p>');
+            
             $('#login').hide();
+            $('#caja_usuario').show();
             $('#caja_chat').show();
             $('#chat').show();
             $('#bienvenida').show();
-        }
+            $('#bienvenida').append('<p> Bienvenido/a ' + data.usuario + '</p>');
+        }    
         else {
             console.log('Envío de datos incorrecto');
             $('#u').val('');

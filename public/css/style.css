@@ -92,19 +92,25 @@ input {
     font-weight: bold;
     font-size: 24px;
     color: #222255;
-    text-align: center;
     width: 100%;
     min-width: 300px;
     width: 100%;
     position: absolute;
-    top: 100px;
+    top: 80px;
     margin: 10px;
     padding: 10px;
 }
 
-#caja_chat {
+#caja_usuario {
     width: 100%;
     position: absolute;
+    top: 150px;
+    max-height: 350px;
+}
+
+#caja_chat {
+    width: 100%;
+
     top: 150px;
     max-height: 350px;
 }
