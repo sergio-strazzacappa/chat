@@ -25,12 +25,12 @@ $(document).ready(function() {
     // Emite un evento de "nuevo_usuario" cuando un usuario
     // se registra
     $('#login').submit(function(e) {
-        console.log('Cliente envía su nombre de usuario');
+        //console.log('Cliente envía su nombre de usuario');
 
         var usuario = $('#u').val();
 
-        console.log('Nombre de usuario = ' + usuario);
-        console.log('Cliente emite: nuevoUsuario');
+        //console.log('Nombre de usuario = ' + usuario);
+        //console.log('Cliente emite: nuevoUsuario');
         socket.emit('nuevoUsuario', {usuario: usuario});
         nombre = usuario;
         e.preventDefault(); // Previene la recarga de la página
@@ -40,10 +40,10 @@ $(document).ready(function() {
 
     // Verifica si existe el nombre de usuario utilizado
     socket.on('enviarUsuario', function(data) {
-        console.log('El cliente: ' + nombre + ' recibe el evento enviarUsuario');
-        console.log('Validación del nombre de usuario ' + data.correcto);
+        //console.log('El cliente: ' + nombre + ' recibe el evento enviarUsuario');
+        //console.log('Validación del nombre de usuario ' + data.correcto);
         if(data.correcto) {
-            console.log('Envío de datos correcto');
+            //console.log('Envío de datos correcto');
             $('#login').hide();
             $('#caja_usuario').show();
             $('#caja_chat').show();
@@ -52,7 +52,7 @@ $(document).ready(function() {
             $('#bienvenida').append('<p> Bienvenido/a ' + data.usuario + '</p>');
         }    
         else {
-            console.log('Envío de datos incorrecto');
+            //console.log('Envío de datos incorrecto');
             $('#u').val('');
             usuario = '';
             alert ('Ya existe un usuario con el nombre ' + data.usuario);
@@ -67,14 +67,14 @@ $(document).ready(function() {
 
 // Recibe los usuarios conectados y los agrega al html
 socket.on('enviarListaUsuarios', function(data) {
-    console.log('Cliente recibe evento "enviarListaUsuarios"');
+    //console.log('Cliente recibe evento "enviarListaUsuarios"');
     var usuarios = data.usuarios;
-    console.log("Usuarios recibidos por el cliente: " + usuarios);
+    //console.log("Usuarios recibidos por el cliente: " + usuarios);
     
     $('#lista_usuarios').replaceWith(
         '<ul id="lista_usuarios"> <p> Usuarios conectados: </p> </ul>');
 
-    if(usuarios.length != undefined){
+    if(usuarios != undefined){
         for(var i = 0; i < usuarios.length; i++) {
             if(usuarios[i] == nombre) {
                 $('#lista_usuarios').append('<li id="usuario_propio">' + usuarios[i] + '</li>');
@@ -95,7 +95,7 @@ $(function() {
     // el mensaje que el usuario envío del campo
     // del chat
     $('#chat').submit(function(e) {
-        console.log('Cliente: ' + nombre + ' envía evento de EnviarMensaje');
+        //console.log('Cliente: ' + nombre + ' envía evento de EnviarMensaje');
         e.preventDefault(); // Previene la recarga de la página
         socket.emit('enviarMensaje', {mensaje: $('#m').val(), usuario: nombre});
         $('#m').val('');
